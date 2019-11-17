@@ -10,7 +10,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
 
 public class SignUpActivity extends AppCompatActivity {
     // firebase auth object
@@ -61,21 +66,28 @@ public class SignUpActivity extends AppCompatActivity {
             Toast.makeText(this, "Please enter the confirmation password", Toast.LENGTH_LONG).show();
             return;
         }
+        // password confirmation checking
+        if(pwd!=cpwd)
+        {
+            Toast.makeText(this, "Passwords must be identical", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        // password condition length
         if (password.length() < 6) {
-            Toast.makeText(getApplicationContext(), "Password too short, please enter a minimum of 6 characters!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Password too short, please enter a minimum of 6 characters!", Toast.LENGTH_SHORT).show();
             return;
         }
         // creating a new user
 
-        firebaseAuth.createUserWithEmailAndPassword(email, password)
+        firebaseAuth.createUserWithEmailAndPassword(email, pwd)
                 .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
-                    public void onComplete(@NonNull Task < AuthResult > task) {
+                    public void onComplete(@NonNull Task<AuthResult> task) {
                         // checking if register is successful
                         if (!task.isSuccessful()) {
                             Toast.makeText(SignUpActivity.this, "Successfully registered.",
                                     Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(SignUpActivity.this, MainActivity.class));
+                            startActivity(new Intent(SignUpActivity.this, HomeActivity.class));
                         } else {
                             // authentication failed message
                             FirebaseAuthException e = (FirebaseAuthException) task.getException();
@@ -86,3 +98,4 @@ public class SignUpActivity extends AppCompatActivity {
 
                 });
     }
+}

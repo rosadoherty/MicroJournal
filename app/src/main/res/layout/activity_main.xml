@@ -4,23 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
     tools:context=".MainActivity">
+
     <include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar"/>
+        layout="@layout/toolbar" />
+
 
     <TextView
         android:id="@+id/textView_Welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:key="txtView_welcome"
         android:text="WELCOME"
         android:textStyle="bold"
-        android:key = "txtView_welcome"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.271" />
+        app:layout_constraintVertical_bias="0.306" />
 
     <EditText
         android:id="@+id/editText_Email"
@@ -30,6 +33,7 @@
         android:layout_marginLeft="84dp"
         android:background="#FD676A"
         android:ems="10"
+        android:gravity="center"
         android:inputType="textPersonName"
         android:key="editText_Email"
         android:text="Email"
@@ -38,8 +42,7 @@
         app:layout_constraintHorizontal_bias="0.131"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.387"
-        android:gravity = "center"/>
+        app:layout_constraintVertical_bias="0.387" />
 
     <EditText
         android:id="@+id/editText_Password"
@@ -47,16 +50,16 @@
         android:layout_height="50dp"
         android:background="#FD676A"
         android:ems="10"
+        android:gravity="center"
         android:inputType="textPersonName"
         android:key="editText_Email"
         android:text="Password"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.475"
-        android:gravity = "center"/>
+        app:layout_constraintVertical_bias="0.483" />
 
     <TextView
         android:id="@+id/textView_SignUp"
@@ -74,23 +77,23 @@
 
     <Button
         android:id="@+id/button_Login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="125dp"
+        android:layout_height="40dp"
         android:background="#FD676A"
         android:key="button_Login"
         android:onClick="LoginUser"
         android:text="Log in"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.535"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.657" />
+        app:layout_constraintVertical_bias="0.655" />
 
     <ImageButton
         android:id="@+id/imageButton_Logo"
-        android:layout_width="170dp"
-        android:layout_height="88dp"
+        android:layout_width="163dp"
+        android:layout_height="108dp"
         android:key="imageButton_Logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

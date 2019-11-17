@@ -32,7 +32,7 @@ public class MainActivity<LoginActivity> extends AppCompatActivity {
         // Get Firebase Auth Instance
         firebaseAuth = FirebaseAuth.getInstance();
     }
-    public void LoginUser(View view){
+    public void LoginUser(View view) {
         //
         emailD = findViewById(R.id.editText_Email);
         password = findViewById(R.id.editText_Password);
@@ -55,22 +55,22 @@ public class MainActivity<LoginActivity> extends AppCompatActivity {
 
         //Authenticate user
         firebaseAuth.signInWithEmailAndPassword(email, pwd)
-                .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>()){
-            @Override
-            public void onComplete(@NonNull Task < AuthResult > task){
-                if (task.isSuccessful()) {
-                    Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-                    finish();
-                } else {
-                    Toast.makeText(MainActivity.this, "Login Error", Toast.LENGTH_LONG).show();
-                }
-            }
-        }
-
+                .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_LONG).show();
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            finish();
+                        } else {
+                            Toast.makeText(MainActivity.this, "Login Error", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+    }
 
         public void goRegisterUser (View view){
             startActivity(new Intent(MainActivity.this, SignUpActivity.class));
         }
     }
-}
+
