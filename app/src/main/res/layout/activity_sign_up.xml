@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context="com.example.microjournal.SignUpActivity">
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar"/>
@@ -38,7 +38,26 @@
         app:layout_constraintHorizontal_bias="0.131"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.387"
+        app:layout_constraintVertical_bias="0.465"
+        android:gravity = "center"/>
+
+    <EditText
+        android:id="@+id/editText_Username"
+        android:layout_width="225dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginLeft="84dp"
+        android:background="#FD676A"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:key="editText_Username"
+        android:text="Username"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.131"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.383"
         android:gravity = "center"/>
 
     <EditText
@@ -48,55 +67,58 @@
         android:background="#FD676A"
         android:ems="10"
         android:inputType="textPersonName"
-        android:key="editText_Email"
+        android:key="editText_Password"
         android:text="Password"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.475"
+        app:layout_constraintVertical_bias="0.55"
         android:gravity = "center"/>
 
-    <TextView
-        android:id="@+id/textView_SignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:key="textView_SignUp"
-        android:onClick="goRegisterUser"
-        android:text="Don't have an account? Sign Up"
+    <EditText
+        android:id="@+id/editText_ConfirmPassword"
+        android:layout_width="225dp"
+        android:layout_height="50dp"
+        android:background="#FD676A"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:key="editText_ConfirmPassword"
+        android:text="Confirm Password"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.457"
+        app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.558" />
+        app:layout_constraintVertical_bias="0.634"
+        android:gravity = "center"/>
 
     <Button
-        android:id="@+id/button_Login"
+        android:id="@+id/button_SignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#FD676A"
-        android:key="button_Login"
-        android:onClick="LoginUser"
-        android:text="Log in"
+        android:key="button_SignUp"
+        android:text="Sign Up"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.535"
+        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.657" />
+        app:layout_constraintVertical_bias="0.746"
+        android:background = "#FD676A"
+        />
 
     <ImageButton
-        android:id="@+id/imageButton_Logo"
+        android:id="@+id/imageButton"
         android:layout_width="170dp"
         android:layout_height="88dp"
-        android:key="imageButton_Logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.522"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.143"
+        app:layout_constraintVertical_bias="0.141"
         app:srcCompat="@drawable/microjournallogo" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

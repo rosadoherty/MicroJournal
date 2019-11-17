@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "362582413165",
+    "firebase_url": "https://micro-journakl.firebaseio.com",
+    "project_id": "micro-journakl",
+    "storage_bucket": "micro-journakl.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:362582413165:android:6a5d22a3858ac4e1f69464",
+        "android_client_info": {
+          "package_name": "com.company.microjournal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "362582413165-hehooe8u9lrbmjf537t4n3hr6r3vs821.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7sXk6rSGinIPwq4xYCjyY0HgNq009RjA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "362582413165-hehooe8u9lrbmjf537t4n3hr6r3vs821.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
