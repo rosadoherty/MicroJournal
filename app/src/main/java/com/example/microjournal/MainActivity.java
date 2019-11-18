@@ -1,9 +1,16 @@
 package com.example.microjournal;
 
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -16,45 +23,54 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
 
-public class MainActivity<LoginActivity> extends AppCompatActivity {
-    // firebase auth object
+public class MainActivity extends AppCompatActivity implements SensorEventListener {
+    // firebase authentication object
     private FirebaseAuth firebaseAuth;
-    EditText emailD, password;
-    Button btnLogin;
-    TextView txtviewSignup;
+
+    Button btnLogin = findViewById(R.id.button_Login);
+    TextView txtviewSignup = findViewById(R.id.textView_SignUp);
+
+    // declaring sensor variables
+    private SensorManager sensorManager;
+    private long lastUpdateTime;
+    private static float SHAKE_THRESHOLD_GRAVITY =2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Get Firebase Auth Instance
+        // Get firebase Authentication Instance
         firebaseAuth = FirebaseAuth.getInstance();
+
+        // initializing sensor manager instance
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        sensorManager.registerListener( this,
+                sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+            sensorManager.SENSOR_DELAY_NORMAL);
+        lastUpdateTime= System.currentTimeMillis();
+
     }
     public void LoginUser(View view) {
-        //
-        emailD = findViewById(R.id.editText_Email);
-        password = findViewById(R.id.editText_Password);
-        btnLogin = findViewById(R.id.button_Login);
-        txtviewSignup = findViewById(R.id.textView_SignUp);
 
-        // getting email and and password from edit text
-        String email = emailD.getText().toString();
-        String pwd = password.getText().toString();
+        String email = ((EditText) findViewById(R.id.editText_Email)).getText().toString();
+        String password = ((EditText)findViewById(R.id.editText_Password)).getText().toString();
 
         //checking if password and email are empty
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(this, "Please enter email", Toast.LENGTH_LONG).show();
             return;
         }
-        if (TextUtils.isEmpty(pwd)) {
+        if (TextUtils.isEmpty(password)) {
             Toast.makeText(this, "Please enter password", Toast.LENGTH_LONG).show();
             return;
         }
-
         //Authenticate user
-        firebaseAuth.signInWithEmailAndPassword(email, pwd)
+        firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -63,14 +79,73 @@ public class MainActivity<LoginActivity> extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             finish();
                         } else {
-                            Toast.makeText(MainActivity.this, "Login Error", Toast.LENGTH_LONG).show();
+                            FirebaseAuthException e = (FirebaseAuthException) task.getException();
+                           // Toast.makeText(MainActivity.this, "Login Error", Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.this, "Failed Registration."
+                                    + e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }
                 });
     }
-
         public void goRegisterUser (View view){
             startActivity(new Intent(MainActivity.this, SignUpActivity.class));
         }
+
+    @Override
+    public void onSensorChanged(SensorEvent sensorEvent) {
+    if (sensorEvent.sensor.getType() == Sensor.TYPE_ACCELEROMETER){
+        getAccelerometer (sensorEvent);
     }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int i) {
+        //ignore
+    }
+
+    private void getAccelerometer(SensorEvent sensorEvent){
+        float [] values = sensorEvent.values;
+
+        //Movement
+        float x = values [0];
+        float y = values [1];
+        float z = values [2];
+
+        float gX = x / SensorManager.GRAVITY_EARTH;
+        float gY = y / SensorManager.GRAVITY_EARTH;
+        float gZ=  z / SensorManager.GRAVITY_EARTH;
+
+        // gForce will be close to 1 when there is no movement.
+        float gForce = (float)Math.sqrt(gX + gX + gY * gY + gZ * gZ);
+
+        long currentTime = System.currentTimeMillis();
+        if (gForce >= SHAKE_THRESHOLD_GRAVITY) {
+            if (currentTime - lastUpdateTime < 200) {
+                return;
+            }
+        }
+            lastUpdateTime = currentTime;
+            Toast.makeText(this, "Device was shaken", Toast.LENGTH_SHORT).show();
+
+        }
+
+        @Override
+        protected void onResume(){
+        super.onResume();
+        // register this class as a listener for the oritenation and accelermoter
+            sensorManager.registerListener(this,sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+                    SensorManager.SENSOR_DELAY_NORMAL);
+        }
+
+        @Override
+        protected void onPause()
+        {
+            //unregister listener
+            super.onPause();
+            sensorManager.unregisterListener(this);
+        }
+        }
+
+
+
 

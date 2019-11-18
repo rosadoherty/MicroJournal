@@ -20,12 +20,8 @@ import com.google.firebase.auth.FirebaseAuthException;
 public class SignUpActivity extends AppCompatActivity {
     // firebase auth object
     private FirebaseAuth firebaseAuth;
-    EditText username;
-    EditText emailD;
-    EditText password;
-    EditText cpassword;
-    Button btnSignUp;
 
+    Button btnSignUp= findViewById(R.id.button_SignUp);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,19 +32,13 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void RegisterUser(View view) {
-        username = findViewById(R.id.editText_Username);
-        emailD = findViewById(R.id.editText_Email);
-        password = findViewById(R.id.editText_Password);
-        cpassword = findViewById(R.id.editText_ConfirmPassword);
-
-        // getting email and and password from edit text
-        String email = emailD.getText().toString();
-        String pwd = password.getText().toString();
-        String user = username.getText().toString();
-        String cpwd = cpassword.getText().toString();
+        String email = ((EditText) findViewById(R.id.editText_Email)).getText().toString();
+        String username = ((EditText) findViewById(R.id.editText_Username)).getText().toString();
+        String password = ((EditText)findViewById(R.id.editText_Password)).getText().toString();
+        String confirmpassword = ((EditText) findViewById(R.id.editText_ConfirmPassword)).getText().toString();
 
         //checking if input fields are empty
-        if (TextUtils.isEmpty(user)) {
+        if (TextUtils.isEmpty(username)) {
             Toast.makeText(this, "Please enter username", Toast.LENGTH_LONG).show();
             return;
         }
@@ -58,28 +48,29 @@ public class SignUpActivity extends AppCompatActivity {
             return;
         }
 
-        if (TextUtils.isEmpty(pwd)) {
+        if (TextUtils.isEmpty(password)) {
             Toast.makeText(this, "Please enter password", Toast.LENGTH_LONG).show();
             return;
         }
-        if (TextUtils.isEmpty(cpwd)) {
+        if (TextUtils.isEmpty(confirmpassword)) {
             Toast.makeText(this, "Please enter the confirmation password", Toast.LENGTH_LONG).show();
             return;
         }
-        // password confirmation checking
-        if(pwd!=cpwd)
+        // password validation
+        if(!password.equals(confirmpassword))
         {
             Toast.makeText(this, "Passwords must be identical", Toast.LENGTH_SHORT).show();
             return;
         }
-        // password condition length
+
+        // password condition length validation
         if (password.length() < 6) {
             Toast.makeText(this, "Password too short, please enter a minimum of 6 characters!", Toast.LENGTH_SHORT).show();
             return;
         }
-        // creating a new user
 
-        firebaseAuth.createUserWithEmailAndPassword(email, pwd)
+        // creating a new user
+        firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -87,7 +78,7 @@ public class SignUpActivity extends AppCompatActivity {
                         if (!task.isSuccessful()) {
                             Toast.makeText(SignUpActivity.this, "Successfully registered.",
                                     Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(SignUpActivity.this, HomeActivity.class));
+                            startActivity(new Intent(SignUpActivity.this, MainActivity.class));
                         } else {
                             // authentication failed message
                             FirebaseAuthException e = (FirebaseAuthException) task.getException();
