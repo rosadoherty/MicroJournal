@@ -10,16 +10,16 @@
 
     <TextView
         android:id="@+id/textView_PreviousEntries"
-        android:key = "textView_PreviousEntries"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="240dp"
+        android:layout_marginBottom="220dp"
+        android:key="textView_PreviousEntries"
         android:text="Previous Entries "
         android:textColor="#000"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.081"
+        app:layout_constraintHorizontal_bias="0.051"
         app:layout_constraintStart_toStartOf="parent" />
 
     <include
