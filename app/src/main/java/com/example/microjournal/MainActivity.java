@@ -7,7 +7,6 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -28,36 +27,35 @@ import com.google.firebase.auth.FirebaseAuthException;
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
     // firebase authentication object
     private FirebaseAuth firebaseAuth;
-
-    Button btnLogin = findViewById(R.id.button_Login);
-    TextView txtviewSignup = findViewById(R.id.textView_SignUp);
+//
+//    Button btnLogin = findViewById(R.id.button_Login);
+//    TextView txtviewSignup = findViewById(R.id.textView_SignUp);
 
     // declaring sensor variables
     private SensorManager sensorManager;
     private long lastUpdateTime;
+    private View view;
     private static float SHAKE_THRESHOLD_GRAVITY =2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         setContentView(R.layout.activity_main);
-
-        // Get firebase Authentication Instance
-        firebaseAuth = FirebaseAuth.getInstance();
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         // initializing sensor manager instance
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         sensorManager.registerListener( this,
                 sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
-            sensorManager.SENSOR_DELAY_NORMAL);
+                sensorManager.SENSOR_DELAY_NORMAL);
         lastUpdateTime= System.currentTimeMillis();
 
+        // Get firebase Authentication Instance
+        firebaseAuth = FirebaseAuth.getInstance();
     }
-    public void LoginUser(View view) {
 
+        public void LoginUser(View view) {
         String email = ((EditText) findViewById(R.id.editText_Email)).getText().toString();
         String password = ((EditText)findViewById(R.id.editText_Password)).getText().toString();
 
@@ -95,8 +93,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
     if (sensorEvent.sensor.getType() == Sensor.TYPE_ACCELEROMETER){
-        getAccelerometer (sensorEvent);
-    }
+        getAccelerometer (sensorEvent); }
     }
 
     @Override
@@ -142,10 +139,5 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         protected void onPause()
         {//unregister listener
             super.onPause();
-            sensorManager.unregisterListener(this);
+            sensorManager.unregisterListener(this); }
         }
-        }
-
-
-
-

@@ -10,4 +10,38 @@
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
+
+    <Button
+        android:id="@+id/button_Choose"
+        android:layout_width="135dp"
+        android:layout_height="43dp"
+        android:layout_marginBottom="16dp"
+        android:text="Choose"
+        android:key = "button_Choose"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.155"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.114" />
+
+    <Button
+        android:id="@+id/button_Upload"
+        android:layout_width="139dp"
+        android:layout_height="43dp"
+        android:text="Upload"
+        android:key = "button_Upload"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.834"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.111" />
+
+    <ImageView
+        android:id="@+id/imgView_CameraEntry"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
