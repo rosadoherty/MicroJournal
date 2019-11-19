@@ -21,8 +21,6 @@ public class SignUpActivity extends AppCompatActivity {
     // firebase auth object
     private FirebaseAuth firebaseAuth;
 
-    Button btnSignUp= findViewById(R.id.button_SignUp);
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +30,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void RegisterUser(View view) {
+        Button btnSignUp= findViewById(R.id.button_SignUp);
         String email = ((EditText) findViewById(R.id.editText_Email)).getText().toString();
         String username = ((EditText) findViewById(R.id.editText_Username)).getText().toString();
         String password = ((EditText)findViewById(R.id.editText_Password)).getText().toString();

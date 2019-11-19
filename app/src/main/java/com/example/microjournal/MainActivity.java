@@ -27,9 +27,6 @@ import com.google.firebase.auth.FirebaseAuthException;
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
     // firebase authentication object
     private FirebaseAuth firebaseAuth;
-//
-//    Button btnLogin = findViewById(R.id.button_Login);
-//    TextView txtviewSignup = findViewById(R.id.textView_SignUp);
 
     // declaring sensor variables
     private SensorManager sensorManager;
@@ -53,6 +50,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         // Get firebase Authentication Instance
         firebaseAuth = FirebaseAuth.getInstance();
+
+        Button btnLogin = findViewById(R.id.button_Login);
+        TextView txtviewSignup = findViewById(R.id.textView_SignUp);
     }
 
         public void LoginUser(View view) {
@@ -75,8 +75,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                            finish();
+                            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                         } else {
                             FirebaseAuthException e = (FirebaseAuthException) task.getException();
                            // Toast.makeText(MainActivity.this, "Login Error", Toast.LENGTH_LONG).show();
@@ -123,10 +122,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             }
             // Authenticate User so login only occurs when details are correct
         }
-            lastUpdateTime = currentTime;
-            Toast.makeText(this, "Device was shaken", Toast.LENGTH_SHORT).show();
+            //lastUpdateTime = currentTime;
+            //Toast.makeText(this, "Device was shaken", Toast.LENGTH_SHORT).show();
         }
-
         @Override
         protected void onResume(){
         super.onResume();
