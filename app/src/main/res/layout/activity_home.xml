@@ -4,6 +4,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
     tools:context="com.example.microjournal.HomeActivity">
+
+
+    <TextView
+        android:id="@+id/textView_PreviousEntries"
+        android:key = "textView_PreviousEntries"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="240dp"
+        android:text="Previous Entries "
+        android:textColor="#000"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.081"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+        <TextView
+            android:id="@+id/textView_OpeningMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:key="textView_OpeningMessage"
+            android:text="And the adventure begins...."
+            android:textColor="#000"
+            android:textStyle="bold|italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.066"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            app:layout_constraintVertical_bias="0.036" />
+
+    <CalendarView
+        android:id="@+id/calendarView_Calendar"
+        android:layout_width="404dp"
+        android:layout_height="321dp"
+        android:key="calendarView_Calendar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.341" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

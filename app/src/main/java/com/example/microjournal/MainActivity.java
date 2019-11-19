@@ -39,9 +39,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
         // Get firebase Authentication Instance
@@ -123,24 +124,23 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             if (currentTime - lastUpdateTime < 200) {
                 return;
             }
+            // Authenticate User so login only occurs when details are correct
         }
             lastUpdateTime = currentTime;
             Toast.makeText(this, "Device was shaken", Toast.LENGTH_SHORT).show();
-
         }
 
         @Override
         protected void onResume(){
         super.onResume();
-        // register this class as a listener for the oritenation and accelermoter
+        // register this class as a listener for the orientation and accelerometer
             sensorManager.registerListener(this,sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
                     SensorManager.SENSOR_DELAY_NORMAL);
         }
 
         @Override
         protected void onPause()
-        {
-            //unregister listener
+        {//unregister listener
             super.onPause();
             sensorManager.unregisterListener(this);
         }
