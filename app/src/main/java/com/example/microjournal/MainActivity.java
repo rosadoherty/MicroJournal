@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private long lastUpdateTime;
     private View view;
     private static float SHAKE_THRESHOLD_GRAVITY =2;
+    private boolean Login = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,6 +125,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         }
             //lastUpdateTime = currentTime;
             //Toast.makeText(this, "Device was shaken", Toast.LENGTH_SHORT).show();
+        if (Login ==true){
+
+
+        }
         }
         @Override
         protected void onResume(){

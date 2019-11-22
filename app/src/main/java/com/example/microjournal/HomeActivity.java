@@ -22,7 +22,6 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         //
-
         ImageButton AddButtonContainer = ((ImageButton) findViewById(R.id.imageButton_AddButtonContainer));
         final ImageButton CameraEntry = ((ImageButton) findViewById(R.id.imageButton_CameraEntry));
         final ImageButton AudioEntry = ((ImageButton) findViewById(R.id.imageButton_AudioEntry));
@@ -41,6 +40,8 @@ public class HomeActivity extends AppCompatActivity {
 
 
     }
+
+    // Switching screens to the relevant journal entry
     public void gotoCameraEntry(View view){
         startActivity(new Intent(HomeActivity.this, CameraEntryActivity.class));
     }

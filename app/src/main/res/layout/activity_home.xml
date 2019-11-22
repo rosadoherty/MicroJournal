@@ -81,7 +81,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.14"
-        app:srcCompat="@drawable/cameralogo" />
+        app:srcCompat="@drawable/cameralogo"
+        android:visibility="gone"/>
 
     <ImageButton
         android:id="@+id/imageButton_AudioEntry"
@@ -99,7 +100,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.097"
-        app:srcCompat="@drawable/miclogo" />
+        app:srcCompat="@drawable/miclogo"
+        android:visibility="gone"/>
 
     <ImageButton
         android:id="@+id/imageButton_WrittenEntry"
@@ -114,5 +116,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.139"
-        app:srcCompat="@drawable/messagelogo" />
+        app:srcCompat="@drawable/messagelogo"
+        android:visibility="gone"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
