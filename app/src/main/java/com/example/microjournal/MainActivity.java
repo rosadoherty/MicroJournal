@@ -102,59 +102,31 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         //ignore
     }
 
-    private void getAccelerometer(SensorEvent sensorEvent){
-        float [] values = sensorEvent.values;
+    private void getAccelerometer(SensorEvent sensorEvent) {
+        float[] values = sensorEvent.values;
 
         //Movement
-        float x = values [0];
-        float y = values [1];
-        float z = values [2];
+        float x = values[0];
+        float y = values[1];
+        float z = values[2];
 
         float gX = x / SensorManager.GRAVITY_EARTH;
         float gY = y / SensorManager.GRAVITY_EARTH;
-        float gZ=  z / SensorManager.GRAVITY_EARTH;
+        float gZ = z / SensorManager.GRAVITY_EARTH;
 
         // gForce will be close to 1 when there is no movement.
-        float gForce = (float)Math.sqrt(gX + gX + gY * gY + gZ * gZ);
+        float gForce = (float) Math.sqrt(gX + gX + gY * gY + gZ * gZ);
 
         long currentTime = System.currentTimeMillis();
         if (gForce >= SHAKE_THRESHOLD_GRAVITY) {
             if (currentTime - lastUpdateTime < 200) {
                 return;
             }
-            if (Login ==false)
-            {
+            if (Login == false) {
                 LoginUser(view);
             }
-            }
-           // String fireBaseEmail = FirebaseAuth.getInstance().getUserByEmail(email);
-            //String fbPass = "Get from firebase db";;
-            // Authenticate User so login only occurs when details are correct
-//          // if(email.equals(fireBaseEmail) && password.equals(fbPass)){
-//                firebaseAuth.signInWithEmailAndPassword(email, password)
-//                        .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<AuthResult> task) {
-//                                if (task.isSuccessful()) {
-//                                    Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_LONG).show();
-//                                    startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-//                                } else {
-//                                    FirebaseAuthException e = (FirebaseAuthException) task.getException();
-//                                    // Toast.makeText(MainActivity.this, "Login Error", Toast.LENGTH_LONG).show();
-//                                    Toast.makeText(MainActivity.this, "Failed Registration."
-//                                            + e.getMessage(), Toast.LENGTH_LONG).show();
-//                                }
-//                            }
-//                        });
-//            }
         }
-            //lastUpdateTime = currentTime;
-            //Toast.makeText(this, "Device was shaken", Toast.LENGTH_SHORT).show();
-        //if (Login ==true){
-
-
-       // }
-
+    }
         @Override
         protected void onResume(){
         super.onResume();
