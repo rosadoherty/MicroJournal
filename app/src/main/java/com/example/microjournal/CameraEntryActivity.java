@@ -28,10 +28,10 @@ import java.util.UUID;
 
 public class CameraEntryActivity extends AppCompatActivity {
     // initializing variables
-    Button button_Choose = ((Button)findViewById(R.id.button_Choose));
-    Button button_Upload= ((Button)findViewById(R.id.button_Upload));
-    ImageView imgview_CameraEntry =((ImageView)findViewById(R.id.imgView_CameraEntry));
-    private Uri filePath;
+   private Button button_Choose = ((Button)findViewById(R.id.button_Choose));
+   private Button button_Upload= ((Button)findViewById(R.id.button_Upload));
+   private ImageView imgview_CameraEntry =((ImageView)findViewById(R.id.imgView_CameraEntry));
+   private Uri filePath;
 
     // request code defined as an instance variable
     private final int PICK_IMAGE_REQUEST = 71;

@@ -12,7 +12,13 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 public class HomeActivity extends AppCompatActivity {
+
+    // initializing variables
     private View view;
+    private ImageButton CameraEntry = ((ImageButton) findViewById(R.id.imageButton_CameraEntry));
+    private ImageButton AddButtonContainer = ((ImageButton) findViewById(R.id.imageButton_AddButtonContainer));
+    private ImageButton AudioEntry = ((ImageButton) findViewById(R.id.imageButton_AudioEntry));
+    private ImageButton WrittenEntry = ((ImageButton) findViewById(R.id.imageButton_WrittenEntry));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,12 +26,6 @@ public class HomeActivity extends AppCompatActivity {
 
         // getting view from mxl file
         setContentView(R.layout.activity_home);
-
-        //
-        ImageButton AddButtonContainer = ((ImageButton) findViewById(R.id.imageButton_AddButtonContainer));
-        final ImageButton CameraEntry = ((ImageButton) findViewById(R.id.imageButton_CameraEntry));
-        final ImageButton AudioEntry = ((ImageButton) findViewById(R.id.imageButton_AudioEntry));
-        final ImageButton WrittenEntry = ((ImageButton) findViewById(R.id.imageButton_WrittenEntry));
 
         // set listener of AddButtonContainer
         AddButtonContainer.setOnClickListener(new View.OnClickListener() {
